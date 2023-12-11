@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang= "es">
+    <head>
+        <meta charset="utf-8" />
+        <title>
+            {% block title  %}
+
+            {% endblock %} 
+            | Raúl Andersson López Puris
+        </title>
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
+    </head>
+    <body>
+        <header>
+            <div id="logotipo">
+                <img src="{% static 'images/LogoDJango.png' %}" />
+                <h1>Proyecto UA4 (LP3)</h1>
+            </div>
+        </header>
+        <nav>
+            <ul>
+                <li>
+                    <a href="{% url 'listar_cursos' %}">Cursos</a>
+                </li>
+                <li>
+                    <a href="{% url 'agregar_curso' %}">Crear Curso</a>
+                </li>
+                <li>
+                    <a href="{% url 'listar_carreras' %}">Carreras</a>
+                </li>
+                <li>
+                    <a href="{% url 'agregar_carrera' %}">Crear Carrera</a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="barra">
+            <span class="esquina-izquierda"></span>
+            <span class="relleno-barra"></span>
+            <span class="esquina-derecha"></span>
+        </div>
+
+        <div id="content">
+            <div class="box">
+                <h2 class="title">Titulo de contenido (de prueba)</h2>
+                {% block content %}
+                    <strong> Contenido en layout (Padre) </strong>
+                {% endblock %}
+            </div>
+        </div>
+        
+        <footer>
+            UNTELS - Lenguaje de Programación III &copy;
+        </footer>
+    </body>
+    <style>
+    </style>    
+</html>
