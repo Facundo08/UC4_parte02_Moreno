@@ -1,4 +1,7 @@
 from django.shortcuts import render, HttpResponse
+#from .views import listar_cursos, crear_curso
+from .models import Course
+from django.contrib import messages
 from django.http import HttpResponse
 from django.shortcuts import render, HttpResponse, redirect
 
@@ -24,10 +27,31 @@ layout = """
 """
 
 def listar_cursos(request):
-    return render(request, 'listar_cursos.html')
+    courses = Course.objects.all()
+    return render(request, 'listar_cursos.html', {'courses': courses})
+    #return render(request, 'listar_cursos.html')
+def crear_curso(request):
+    if request.method == 'POST':
+        code = request.POST['code']
+        name = request.POST['name']
+        hour = request.POST['hour']
+        credits = request.POST['credits']
+        state = request.POST['state']
 
-def agregar_curso(request):
-    return render(request, 'agregar_curso.html')
+        Course.objects.create(
+            code=code,
+            name=name,
+            hour=hour,
+            credits=credits,
+            state=state
+        )
+
+        messages.success(request, 'Curso creado exitosamente')
+        return redirect('listar_cursos')
+
+    return render(request, 'crear_curso.html')
+#def agregar_curso(request):
+#    return render(request, 'agregar_curso.html')
 
 def listar_carreras(request):
     return render(request, 'listar_carreras.html')

@@ -1,9 +1,14 @@
-{% extends 'layout.html' %}
-
-{% block title %}
-    Inicio
-{% endblock %}
-
-{% block content %}
-<h1>Página listar_cursos</h1>
-{% endblock %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Listado de Cursos</title>
+</head>
+<body>
+    <h1>Listado de Cursos</h1>
+    <ul>
+        {% for course in courses %}
+            <li>{{ course.name }} - <a href="#">Eliminar</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
